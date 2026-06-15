@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense - Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h2>Add Expense</h2>
+
+    <form method="POST">
+        <input name="title" placeholder="Title">
+
+        <select name="category">
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Rent</option>
+            <option>Groceries</option>
+            <option>Medical</option>
+            <option>Entertainment</option>
+            <option>Education</option>
+            <option>Fuel</option>
+            <option>Internet</option>
+            <option>Mobile Recharge</option>
+            <option>Electricity</option>
+            <option>Water Bill</option>
+            <option>EMI</option>
+            <option>Insurance</option>
+            <option>Investment</option>
+            <option>Clothing</option>
+            <option>Gifts</option>
+            <option>Others</option>
+        </select>
+
+        <input name="amount" type="number" placeholder="Amount">
+        <input name="date" type="date">
+
+        <button type="submit">Add</button>
+    </form>
+
+    <a href="/dashboard">Back</a>
+
+</body>
+</html>

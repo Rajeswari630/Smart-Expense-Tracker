@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: hsl(111, 71%, 46%);
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Main Heading */
+h2 {
+    color: white;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.notification {
+    background: #ff4d4d;
+    color: white;
+    padding: 12px;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Income / Expense / Savings */
+h3 {
+    color: #f1f1f1;
+    font-size: 22px;
+}
+
+/* Form styling */
+form {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Input and Select */
+input, select {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e8449;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.card {
+    padding: 20px;
+    width: 180px;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Card colors */
+.total {
+    background: #3498db;
+}
+
+.monthly {
+    background: #2ecc71;
+}
+
+.yearly {
+    background: #e67e22;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 6px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+a:hover {
+    background: #c0392b;
+}
+
+/* Table */
+table {
+    margin: auto;
+    margin-top: 20px;
+    background: white;
+    border-collapse: collapse;
+    width: 85%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table heading */
+th {
+    background: #2980b9;
+    color: white;
+}
+
+/* Table cells */
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Row hover */
+tr:hover {
+    background: #f1f1f1;
+}

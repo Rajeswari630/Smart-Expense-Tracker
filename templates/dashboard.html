@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Dashboard</h2>
+
+<div class="cards">
+
+    <div class="card total">
+        Total: ₹{{ total }}
+    </div>
+
+    <div class="card monthly">
+        Monthly: ₹{{ monthly }}
+    </div>
+
+    <div class="card yearly">
+        Yearly: ₹{{ yearly }}
+    </div>
+
+</div>
+
+<h3>Income: ₹{{ income }}</h3>
+<h3>Expense: ₹{{ total }}</h3>
+<h3>Savings: ₹{{ savings }}</h3>
+
+<!-- NOTIFICATIONS -->
+{% for note in notifications %}
+    <div class="notification">
+        {{ note }}
+    </div>
+{% endfor %}
+
+<br>
+
+<!-- ACTION + FILTER SECTION -->
+<div class="action-bar">
+
+    <h3>Quick Filters</h3>
+    <div class="filters">
+
+        <a href="/dashboard?filter=today" class="filter-btn">Today</a>
+        <a href="/dashboard?filter=yesterday" class="filter-btn">Yesterday</a>
+        <a href="/dashboard?filter=week" class="filter-btn">Last 7 Days</a>
+        <a href="/dashboard" class="filter-btn all">All</a>
+
+    </div>
+
+    <h3>Actions</h3>
+    <div class="actions">
+
+        <a href="/add_expense">Add Expense</a>
+        <a href="/logout">Logout</a>
+        <a href="/piechart">View Pie Chart</a>
+        <a href="/download_pdf">Download PDF Report</a>
+        <a href="/download_excel">Download Excel</a>
+
+    </div>
+
+</div>
+
+<br>
+
+<!-- SEARCH FORM -->
+<form method="GET" action="/dashboard">
+
+    <input type="text" name="title" placeholder="Search Title">
+    <input type="text" name="category" placeholder="Search Category">
+    <input type="date" name="date">
+
+    <select name="sort">
+        <option value="">Sort By</option>
+        <option value="low">Amount Low to High</option>
+        <option value="high">Amount High to Low</option>
+    </select>
+
+    <button type="submit">Search</button>
+
+</form>
+
+<br>
+
+<!-- TABLE -->
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for e in expenses %}
+    <tr>
+        <td>{{ e[2] }}</td>
+        <td>{{ e[3] }}</td>
+        <td>{{ e[4] }}</td>
+        <td>{{ e[5] }}</td>
+        <td>
+            <a href="/delete/{{ e[0] }}">Delete</a>
+            <a href="/edit/{{ e[0] }}">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

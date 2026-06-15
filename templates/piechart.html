@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container { width: 60%; max-width: 520px; margin: 0 auto; }
+        #pieChart { width: 100% !important; height: auto !important; }
+        .details { width: 60%; max-width: 520px; margin: 12px auto; font-family: Arial, sans-serif; }
+        .details table { width: 100%; border-collapse: collapse; }
+        .details th, .details td { text-align: left; padding: 6px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<h2>Expense Pie Chart</h2>
+
+<div class="chart-container">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const canvas = document.getElementById('pieChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Ensure template variables are available as JS arrays
+    const categories = {{ categories | tojson }} || [];
+    const values = {{ values | tojson }} || [];
+
+    if (!Array.isArray(categories) || !Array.isArray(values) || values.length === 0) {
+        canvas.insertAdjacentHTML('afterend', '<p>No expense data available to display the chart.</p>');
+        return;
+    }
+
+    const total = values.reduce((acc, v) => acc + (Number(v) || 0), 0);
+
+    const chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: categories,
+            datasets: [{
+                data: values,
+                backgroundColor: [
+                    'red', 'blue', 'green', 'orange', 'purple', 'yellow',
+                    'pink', 'cyan', 'brown', 'gray'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Expenses by Category'
+                }
+                ,
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = Number(context.parsed) || 0;
+                            const pct = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+                            return label + ': ' + value.toFixed(2) + ' (' + pct + '%)';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Add details table below the chart
+    const detailsDiv = document.createElement('div');
+    detailsDiv.className = 'details';
+    let html = '<table><thead><tr><th>Category</th><th>Amount</th><th>Percent</th></tr></thead><tbody>';
+    for (let i = 0; i < categories.length; i++) {
+        const cat = categories[i];
+        const val = Number(values[i]) || 0;
+        const pct = total > 0 ? ((val / total) * 100).toFixed(1) : '0.0';
+        html += '<tr><td>' + cat + '</td><td>' + val.toFixed(2) + '</td><td>' + pct + '%</td></tr>';
+    }
+    html += '</tbody></table>';
+    detailsDiv.innerHTML = html;
+    canvas.parentNode.insertAdjacentElement('afterend', detailsDiv);
+});
+</script>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

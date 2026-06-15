@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Expense - Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h2>Edit Expense</h2>
+
+    <form method="POST">
+        <input name="title" value="{{ expense[2] }}">
+        <input name="category" value="{{ expense[3] }}">
+        <input name="amount" value="{{ expense[4] }}">
+        <input name="date" type="date" value="{{ expense[5] }}">
+
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>
